@@ -5,6 +5,7 @@ import {
   createCircuit,
   updateCircuit,
   deleteCircuit,
+  patchCircuit,
 } from '../controllers/circuitControllers.js';
 
 const router = express.Router();
@@ -14,6 +15,7 @@ router
   .route('/:id')
   .get(getCircuitById)
   .delete(deleteCircuit)
-  .patch(updateCircuit);
+  .patch(patchCircuit)
+  .put(updateCircuit);
 
 export { router as circuitsRouter };
