@@ -2,7 +2,25 @@ import { Circuit } from '../models/circuitModel.js';
 
 const getAllCircuits = async (req, res) => {
   try {
-    const circuits = await Circuit.find({});
+    let query = Circuit.find();
+
+    // Search by name
+    if (req.query.name) {
+      query = query.where('name', new RegExp(req.query.name, 'i'));
+    }
+
+    // Sort by first_gp
+    if (req.query.sort) {
+      query = query.sort({ first_gp: req.query.sort });
+    }
+
+    // Limit
+    if (req.query.limit) {
+      query = query.limit(parseInt(req.query.limit));
+    }
+
+    const circuits = await query.exec();
+
     res.status(200).json({ circuits });
   } catch (error) {
     res.status(500).json({ error: error.message });
