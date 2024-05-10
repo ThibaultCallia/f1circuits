@@ -1,5 +1,5 @@
 import express from 'express';
-import { circuitsRouter } from './routes/circuitsRoutes.js';
+import { wordsRouter } from './routes/wordsRoutes.js';
 import { dbConnection } from './db/connect.js';
 import dotenv from 'dotenv';
 
@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use('/api/v1/f1circuits', circuitsRouter);
+app.use('/api/v1/words', wordsRouter);
 
 // Start server
 const port = 9000;
